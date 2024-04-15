@@ -1,27 +1,28 @@
-from copy import deepcopy
+def vertex_cover_min(grafo):
+    grafo_conexo = False
+    solucion_optima = grafo.obtener_vertices()
 
-def vertex_cover_min(grafo, vertices_cubiertos=None, mejor_solucion=None):
-    if vertices_cubiertos is None:
-        vertices_cubiertos = set()
-    if mejor_solucion is None:
-        mejor_solucion = set(grafo.obtener_vertices())
+    def do_backtracking(vertices, optima_local):
+        nonlocal solucion_optima
+        nonlocal grafo_conexo
 
-    if len(grafo.obtener_vertices()) == 0:
-        if len(vertices_cubiertos) < len(mejor_solucion):
-            mejor_solucion = vertices_cubiertos
-        return list(mejor_solucion)
+        if len(vertices) == 0:
+            if len(optima_local) < len(solucion_optima):
+                solucion_optima = optima_local.copy()
+            return
 
-    vertice = next(iter(grafo.obtener_vertices()))
+        if len(optima_local) >= len(solucion_optima):
+            return
 
-    # Case 1: vertice is in the cover
-    grafo_con_vertice = deepcopy(grafo)
-    grafo_con_vertice.borrar_vertice(vertice)
-    mejor_solucion = vertex_cover_min(grafo_con_vertice, vertices_cubiertos.union({vertice}), mejor_solucion)
+        for vertice in vertices:
+            for adyacente in grafo.adyacentes(vertice):
+                if adyacente not in optima_local and vertice not in optima_local:
+                    grafo_conexo = True
+                    optima_local.append(vertice)
+            do_backtracking(set(vertices) - {vertice}, optima_local)
+            if vertice in optima_local:
+                optima_local.pop()
 
-    # Case 2: vertice is not in the cover
-    if all(adyacente in vertices_cubiertos for adyacente in grafo.adyacentes(vertice)):
-        grafo_sin_vertice = deepcopy(grafo)
-        grafo_sin_vertice.borrar_vertice(vertice)
-        mejor_solucion = vertex_cover_min(grafo_sin_vertice, vertices_cubiertos, mejor_solucion)
-
-    return list(mejor_solucion)
+    solucion_optima_local = []
+    do_backtracking(grafo.obtener_vertices(), solucion_optima_local)
+    return solucion_optima if grafo_conexo else []
