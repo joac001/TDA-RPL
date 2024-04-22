@@ -29,3 +29,14 @@ def sche_dinamico(n, p, valor):
     for j in range(1, n + 1):
         M_SCHE[j] = max(valor[j] + M_SCHE[p[j]], M_SCHE[j - 1])
     return M_SCHE[n]
+
+
+#  Dinamico con solucion reconstruida
+def sche_solucion(M_SCHE, valor, p, j, solucion):
+    if j == 0:
+        return solucion
+    if valor[j] + M_SCHE[p[j]] >= M_SCHE[j - 1]:
+        solucion.append(j)
+        return sche_solucion(M_SCHE, valor, p, p[j], solucion)
+    else:
+        return sche_solucion(M_SCHE, valor, p, j - 1, solucion)
