@@ -1,5 +1,11 @@
 """
-Este algoritmo no pasa test de volumen para O(log n)
+Se tiene un arreglo de N >= 3 elementos en forma de pico, esto es:
+estrictamente creciente hasta una determinada posición p, y estrictamente decreciente a partir de ella (con 0 < p < N - 1).
+Por ejemplo, en el arreglo [1, 2, 3, 1, 0, -2] la posición del pico es p = 2.
+Se pide:
+Implementar un algoritmo de división y conquista de orden O(log n) que encuentre la posición p del pico:
+    func PosicionPico(v []int, ini, fin int) int. La función será invocada inicialmente como:
+    PosicionPico(v, 0, len(v)-1), y tiene como pre-condición que el arreglo tenga forma de pico.
 """
 
 
@@ -8,25 +14,8 @@ def check_pico(arr, indice_solucion):
 
 
 def posicion_pico(v, ini, fin, pivote=0):
-    v_len = len(v)
 
-    maximo_pico_local = 0
-    maximo_pico = 0
-    for i in range(0, v_len - 1):
-
-        arr = v[i:i + 3]
-        if len(arr) < 3:
-            break
-
-        maximo_pico_local = check_pico(arr, pivote)
-        if maximo_pico_local == -1:
-            maximo_pico_local = maximo_pico
-
-        if v[maximo_pico_local] >= v[maximo_pico]:
-            maximo_pico = maximo_pico_local
-        pivote += 1
-
-    return maximo_pico
+#      Implementar un merge sort de mayor a meno
 
 
 # Pruebas

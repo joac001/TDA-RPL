@@ -1,8 +1,3 @@
-"""
-Este algoritmo es de busqueda binaria, por lo tanto es O(log n) pero no pasa el test de volumen
-"""
-
-
 def indice_primer_cero(arr, pivote=0):
     len_arr = len(arr)
 
@@ -26,8 +21,16 @@ a1 = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 a2 = [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 a3 = [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1]
 a4 = [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1]
+a5 = []
+a6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+a7 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
 
-print(indice_primer_cero(a1))
-print(indice_primer_cero(a2))
-print(indice_primer_cero(a3))
-print(indice_primer_cero(a4))
+if __name__ == "__main__":
+    print(indice_primer_cero(a1))
+    print(indice_primer_cero(a2))
+    print(indice_primer_cero(a3))
+    print(indice_primer_cero(a4))
+    print(indice_primer_cero(a5))
+    print(indice_primer_cero(a6))
+    print(indice_primer_cero(a7))
+
