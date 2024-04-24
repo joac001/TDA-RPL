@@ -1,3 +1,5 @@
+# No pasa test
+
 def indice_primer_cero(arr, pivote=0):
     len_arr = len(arr)
 
