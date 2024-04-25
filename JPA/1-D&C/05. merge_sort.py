@@ -29,5 +29,18 @@ def merge_sort(arr):
 
     return merge(izq_ordenado,der_ordenado)
 
-arr = [3,4,2,5,0,9,1]
-print(merge_sort(arr))
+"""
+Recordando al Teorema Maestro tenemos que:
+aT(n/b)+O(nc)
+a = cantidad de llamados recursivos
+En este caso tenemos 2 llamados recursivos.
+b = proporción del tamaño original con el que se trabaja recursivamente
+La cantidad de parcial de elementos se divide a la mitad, por lo que b=2
+c = costo de partir y juntar
+El costo es lineal, por lo que c = 1.
+
+Entonces: T(n)=2T(n/2)+O(n)
+como logB(A)= log2(2) = 1 = c
+Entonces -> T(n) = O(nlogn) = O(logn)
+
+"""
