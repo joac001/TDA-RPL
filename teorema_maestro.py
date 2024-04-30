@@ -1,6 +1,6 @@
 from math import log
 
-# Teorema maestro para calcular complejidad de algoritmos de D&C
+# Teorema maestro para calcular complejidad de algoritmos de 1-D&C
 def teorema_maestro_dc():
     print('Ingrese a: Cantidad de llamados recursivos.')
     input_a = input()
