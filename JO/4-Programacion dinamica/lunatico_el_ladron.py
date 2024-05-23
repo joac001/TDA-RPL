@@ -35,5 +35,4 @@ def lunatico(ganancias):
         else:
             i -= 1
 
-    casas.reverse()
-    return casas
+    return casas.reverse()
