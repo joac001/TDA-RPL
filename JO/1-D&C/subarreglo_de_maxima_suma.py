@@ -1,3 +1,5 @@
+# cual es la complejidad del algoritmo obtener_max_subarray?
+# O(n*log(n))
 def max_subarray(arr):
     return obtener_max_subarray(arr,0,len(arr)-1)[1]
 

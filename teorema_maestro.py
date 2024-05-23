@@ -22,3 +22,6 @@ def teorema_maestro_dc():
         return f'n^({log(a,b)}) ==> O(n)'
 
 print(f'O({teorema_maestro_dc()})')
+
+if __name__ == "__main__":
+    teorema_maestro_dc()
