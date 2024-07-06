@@ -9,7 +9,7 @@ def get_max_subarray(arr, inicio, fin):
 
     #Voy partiendo de a mitades hasta llegar a un único elemento
     #A partir del cual se irán haciendo sumas sucesivas agregando de a un elemento
-    #De esta forma puedo chequear todas las sumas posibles    
+    #De esta forma puedo chequear todas las sumas posibles
     max_izquierda_suma, max_izquierda_subsecuencia = get_max_subarray(arr, inicio, medio)
     max_derecha_suma, max_derecha_subsecuencia = get_max_subarray(arr, medio + 1, fin)
 
@@ -33,7 +33,7 @@ def get_max_subarray(arr, inicio, fin):
             max_derecha_cruzando = suma_temp
             max_derecha_index = i
 
-    #Obtengo la máxima suma entre todo lo calculados
+    #Obtengo la máxima suma entre _todo lo calculados
     max_suma = max(max_izquierda_suma, max_derecha_suma, max_izquierda_cruzando + max_derecha_cruzando)
 
     #Condicional para controlar que subarray debe retornarse en base a que parte me dio la máxima suma
@@ -43,3 +43,10 @@ def get_max_subarray(arr, inicio, fin):
         return max_suma, max_derecha_subsecuencia
     else:
         return max_izquierda_cruzando + max_derecha_cruzando, arr[max_izquierda_index:max_derecha_index+1]
+
+if __name__ == '__main__':
+    arr = [-1,1,3,4,1,-5]
+    print(max_subarray(arr))  # Salida esperada: [1, 3, 4, 1]
+
+# ¿Que complejidad tiene este algoritmo y porque?
+# La complejidad de este algoritmo es O(n log n) ya que se divide el array en mitades logarítmicas

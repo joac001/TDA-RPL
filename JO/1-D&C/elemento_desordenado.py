@@ -7,11 +7,13 @@ def elemento_desordenado(arr):
             return None
 
     for indice in range(0, len(arr)):
+        retorno = None
         if indice != len(arr)-1:
             retorno = elemento_desordenado([arr[indice], arr[indice + 1]])
-        if retorno != None:
+        if retorno is not None:
             return retorno
 
 
-array = [1,2,5,3,4]
-print(elemento_desordenado(array))
+if __name__=='__main__':
+    array = [1, 2, 3, 4]
+    print(elemento_desordenado(array))
