@@ -19,3 +19,36 @@ def maxCoins(coins):
     
     # El valor óptimo para Sophia estará en dp[0][n-1]
     return dp[0][n-1]
+
+def maxCoins2(coins):
+    n = len(coins)
+    # Matriz de programación dinámica
+    dp = [[0] * n for _ in range(n)]
+    
+    # Llenar la diagonal principal
+    for i in range(n):
+        dp[i][i] = coins[i]
+    
+    # Llenar la matriz diagonalmente
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            
+            # Elegir la primera moneda
+            choice1 = coins[i]
+            if i + 2 <= j:
+                choice1 += min(dp[i+2][j], dp[i+1][j-1])
+            elif i + 1 <= j:
+                choice1 += dp[i+1][j-1]
+            
+            # Elegir la última moneda
+            choice2 = coins[j]
+            if i <= j - 2:
+                choice2 += min(dp[i][j-2], dp[i+1][j-1])
+            elif i <= j - 1:
+                choice2 += dp[i][j-1]
+            
+            # Tomar el máximo
+            dp[i][j] = max(choice1, choice2)
+    
+    return dp[0][n-1]
